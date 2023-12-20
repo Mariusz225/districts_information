@@ -2,11 +2,12 @@
 import {toDataURL} from "../../helper/fileUtils";
 export default {
     name: "DistrictView",
-    props: ['id'],
+    props: {
+        'id': Number
+    },
     data() {
         return {
             districtIsLoaded: false,
-
 
             urlObject: null
         };
@@ -49,7 +50,6 @@ export default {
 
         onFileChange(e) {
             const file = e.target.files[0];
-            console.log(file)
             this.urlObject = URL.createObjectURL(file);
         }
 
@@ -58,6 +58,9 @@ export default {
     created() {
         this.loadDistrict();
     },
+    updated() {
+        this.loadDistrict()
+    }
 }
 </script>
 

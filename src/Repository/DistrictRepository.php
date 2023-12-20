@@ -47,12 +47,12 @@ class DistrictRepository extends ServiceEntityRepository
 //    }
 
 
-    public function findFilteredAndSorted(array $filters, string $sortBy = 'name', string $sortOrder = 'asc')
+    public function findFilteredAndSort(array $filters, array $sorting)
     {
         $qb = $this->createQueryBuilder('d');
 
         if ($filters['name'] ?? null) {
-            $qb->andWhere('d.name LIKE :name')
+            $qb->andWhere('LOWER(d.name) LIKE LOWER(:name)')
                 ->setParameter('name', '%' . $filters['name'] . '%');
         }
 
@@ -77,10 +77,10 @@ class DistrictRepository extends ServiceEntityRepository
         }
 
         $validSortColumns = ['name', 'area', 'population'];
-        $sortBy = in_array($sortBy, $validSortColumns, true) ? $sortBy : 'name';
+        $sortBy = in_array($sorting['sortBy'], $validSortColumns, true) ? $sorting['sortBy'] : 'name';
 
         $validSortOrders = ['asc', 'desc'];
-        $sortOrder = in_array($sortOrder, $validSortOrders, true) ? $sortOrder : 'asc';
+        $sortOrder = in_array($sorting['sortOrder'], $validSortOrders, true) ? $sorting['sortOrder'] : 'asc';
 
         $qb->orderBy('d.' . $sortBy, $sortOrder);
 

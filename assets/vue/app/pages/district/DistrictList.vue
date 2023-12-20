@@ -18,7 +18,6 @@ export default {
     },
     computed: {
         districts() {
-            console.log(this.$store.getters['districts/districts'])
             return this.$store.getters['districts/districts']
         },
     },
@@ -44,6 +43,8 @@ export default {
 </script>
 
 <template>
+    <router-link :to="{ name: 'districtCreate'}">Stwórz nową dzielnicę</router-link>
+
     <div>
         <div>
             <label>Nazwa:</label>

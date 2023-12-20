@@ -1,8 +1,8 @@
 export function toDataURL(url) {
   return new Promise((resolve, reject) => {
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.onload = function() {
-      var reader = new FileReader();
+      const reader = new FileReader();
       reader.onloadend = function() {
         resolve(reader.result);
       };

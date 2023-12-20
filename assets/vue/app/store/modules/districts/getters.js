@@ -4,6 +4,6 @@ export default {
   },
 
   district: (state) => (id) => {
-    return state.districts.find(id => id === id)
+    return state.districts.find(district => district.id === id)
   },
 }

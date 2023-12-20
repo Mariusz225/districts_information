@@ -59,6 +59,18 @@ export default {
         body: JSON.stringify(payload.district)
       }
     );
+    if (response.ok) {
+      context.commit('setDistrict', payload.district)
+    }
+  },
+
+  async createDistrict(context, payload) {
+    const response = await fetch(
+      `/api/district`, {
+        method: 'POST',
+        body: JSON.stringify(payload.district)
+      }
+    );
 
     if (response.ok) {
       context.commit('setDistrict', payload.district)

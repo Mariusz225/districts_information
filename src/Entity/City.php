@@ -14,11 +14,11 @@ class City
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('district_info')]
+    #[Groups(['city_info', 'district_info'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('district_info')]
+    #[Groups(['city_info', 'district_info'])]
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'city', targetEntity: District::class)]
